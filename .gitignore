@@ -1,0 +1,46 @@
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env
+.env.*    # if you use multiple .env files like .env.development
+
+# --- TypeScript ---
+*.tsbuildinfo
+
+# --- Build output ---
+dist/
+build/
+out/
+
+# --- Logs ---
+logs
+*.log
+*.log.*
+
+# --- VS Code ---
+.vscode/
+.history/
+*.code-workspace
+
+# --- React-specific ---
+*.cache
+.cache/
+public/static/
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# --- Mac system files ---
+.DS_Store
+
+# --- Windows system files ---
+Thumbs.db
+
+# --- Misc ---
+coverage/
+.idea/
+*.swp
