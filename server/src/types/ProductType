@@ -1,0 +1,10 @@
+export type ProductType = {
+  id: string;
+  name: string;
+  category: string;
+  price: string;
+  dateAdded: string;
+  averageRating: string;
+  [key: string]: string;  // <-- this fixes the error
+};
+export default ProductType;
