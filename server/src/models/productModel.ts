@@ -46,7 +46,7 @@ class Product {
   static getProductByQuery(query: string) {
     
     return productData.filter((product) =>
-      product.name.toLowerCase().includes(query)
+      product.name.toLowerCase().includes(query)||product.category.toLowerCase().includes(query)
     );
     
   }
