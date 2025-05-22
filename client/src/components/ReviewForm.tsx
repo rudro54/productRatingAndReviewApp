@@ -65,8 +65,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, initialReview, onClo
       </div>
       {error && <div className="text-red-500 text-sm">{error}</div>}
       <div className="flex gap-2">
-        <button type="submit" className="bg-blue-500 text-white px-3 py-1 rounded" disabled={submitting}>{initialReview ? 'Update' : 'Submit'}</button>
-        {initialReview && onClose && <button type="button" className="bg-gray-300 text-black px-3 py-1 rounded" onClick={onClose}>Cancel</button>}
+        <button type="submit" className=" btn btn-success bg-blue-500 text-white px-3 py-1 rounded" disabled={submitting}>{initialReview ? 'Update' : 'Submit'}</button>
+        {initialReview && onClose && <button type="button" className=" btn btn-info bg-gray-300 text-black px-3 py-1 rounded" onClick={onClose}>Cancel</button>}
       </div>
     </form>
   );

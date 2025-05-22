@@ -12,7 +12,7 @@ const ProductDetail: React.FC = () => {
   if (!product) return <div>Product not found</div>;
   return (
     <div className="max-w-2xl mx-auto p-4">
-      <button className="mb-4 text-blue-500 underline" onClick={() => navigate(-1)}>
+      <button className="btn btn-primary mb-4 text-blue-500 underline" onClick={() => navigate(-1)}>
         ← Back
       </button>
       <h1 className="text-2xl font-bold mb-2">{product.name}</h1>

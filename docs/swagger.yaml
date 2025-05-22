@@ -1,0 +1,205 @@
+openapi: 3.0.0
+info:
+  title: Product Review Platform API
+  version: 1.0.0
+  description: API for managing products and reviews
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /products:
+    get:
+      summary: Get all products
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: Page number
+        - in: query
+          name: category
+          schema:
+            type: string
+          description: Filter by category
+      responses:
+        200:
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+  /products/search:
+    get:
+      summary: Search products by name or category
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          required: true
+          description: Search query
+      responses:
+        200:
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+  /products/{id}:
+    get:
+      summary: Get a product by ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Product ID
+      responses:
+        200:
+          description: A single product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Product not found
+
+  /products/{id}/reviews:
+    get:
+      summary: Get all reviews for a product
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Product ID
+      responses:
+        200:
+          description: List of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+    post:
+      summary: Add a review for a product
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Product ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewInput'
+      responses:
+        201:
+          description: Review created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+
+  /products/{productId}/reviews/{id}:
+    put:
+      summary: Update a review
+      parameters:
+        - in: path
+          name: productId
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewInput'
+      responses:
+        200:
+          description: Review updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+        404:
+          description: Review not found
+    delete:
+      summary: Delete a review
+      parameters:
+        - in: path
+          name: productId
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        204:
+          description: Review deleted
+        404:
+          description: Review not found
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+        price:
+          type: string
+        dateAdded:
+          type: string
+        averageRating:
+          type: integer
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+        productId:
+          type: string
+        author:
+          type: string
+        rating:
+          type: integer
+        comment:
+          type: string
+        date:
+          type: string
+    ReviewInput:
+      type: object
+      properties:
+        author:
+          type: string
+        rating:
+          type: integer
+        comment:
+          type: string

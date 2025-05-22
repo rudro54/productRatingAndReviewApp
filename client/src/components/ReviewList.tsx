@@ -24,8 +24,8 @@ const ReviewList: React.FC<{ productId: number }> = ({ productId }) => {
               <div className="text-gray-400 text-xs">{new Date(review.date).toLocaleString()}</div>
             </div>
             <div>
-              <button className="text-sm text-blue-500 ml-2" onClick={() => setEditId(review.id)}>Edit</button>
-              <button className="text-sm text-red-500 ml-2" onClick={() => deleteReview(productId, review.id)}>Delete</button>
+              <button className=" btn btn-success text-sm text-blue-500 ml-2" onClick={() => setEditId(review.id)}>Edit</button>
+              <button className=" btn btn-danger text-sm text-red-500 ml-2" onClick={() => deleteReview(productId, review.id)}>Delete</button>
             </div>
             {editId === review.id && (
               <ReviewForm productId={productId} initialReview={review} onClose={() => setEditId(null)} />
